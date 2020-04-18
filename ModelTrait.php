@@ -16,7 +16,18 @@ trait ModelTrait
         $this->trigger(self::EVENT_ON_UNSAFE_ATTRIBUTE, $event);
 
         parent::onUnsafeAttribute($event->name, $event->value);
-    }  
+    }
+
+    public function afterSetAttributes($values, $safeOnly = true)
+    {
+        $event = new AfterSetAttributesEvent;
+
+        $event->values = $values;
+
+        $event->safeOnly = $safeOnly;
+
+        $this->trigger(self::EVENT_AFTER_SET_ATTRIBUTES, $event);
+    }
 
     public function setAttributes($values, $safeOnly = true)
     {
@@ -29,6 +40,8 @@ trait ModelTrait
         $this->trigger(self::EVENT_SET_ATTRIBUTES, $event);
 
         parent::setAttributes($event->values, $event->safeOnly);
+
+        $this->afterSetAttributes($values, $safeOnly);
     }
 
     public function safeAttributes()

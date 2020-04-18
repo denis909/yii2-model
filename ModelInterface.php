@@ -19,4 +19,6 @@ class ModelInterface
     
     const EVENT_SET_ATTRIBUTES = 'setAttributes';
 
+    const EVENT_AFTER_SET_ATTRIBUTES = 'afterSetAttributes';
+
 }
