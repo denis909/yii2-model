@@ -2,7 +2,7 @@
 
 namespace denis909\yii;
 
-class ModelInterface
+interface ModelInterface
 {
 
     const EVENT_ATTRIBUTE_HINTS = 'attributeHints';

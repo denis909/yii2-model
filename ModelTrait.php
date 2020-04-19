@@ -5,6 +5,38 @@ namespace denis909\yii;
 trait ModelTrait
 {
 
+    public function getUnsafeAttributes()
+    {
+        if (property_exists($this, 'unsafeAttributes'))
+        {
+            return $this->unsafeAttributes;
+        }
+
+        return [];
+    }
+
+    public function scenarios()
+    {
+        $return = parent::scenarios();
+
+        $unsafeAttributes = $this->getUnsafeAttributes();
+
+        foreach($return as $scenario => $attributes)
+        {
+            foreach($unsafeAttributes as $attribute)
+            {
+                $index = array_search($attribute, $return[$scenario]);
+
+                if ($index !== false)
+                {
+                    unset($return[$scenario][$index]);
+                }
+            }
+        }
+
+        return $return;
+    }
+
     public function onUnsafeAttribute($name, $value)
     {
         $event = new OnUnsafeAttributeEvent;
