@@ -5,6 +5,18 @@ namespace denis909\yii;
 trait ModelTrait
 {
 
+    public function saveOrFail($runValidation = true, $attributeNames = null)
+    {
+        $return = parent::save($runValidation, $attributeNames);
+
+        if (!$return)
+        {
+            throw new ModelException($this);
+        }
+
+        return $return;
+    }
+
     public function getUnsafeAttributes()
     {
         if (property_exists($this, 'unsafeAttributes'))

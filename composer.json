@@ -2,15 +2,12 @@
     "name": "denis909/yii2-model",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "denis909",
-            "email": "mail@denis909.spb.ru"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "denis909\\yii\\" : ""
         }
+    },
+    "require": {
+        "denis909/yii2-model-exception": "*"
     }
 }
