@@ -8,6 +8,7 @@
         }
     },
     "require": {
+        "psr/log": "*",
         "denis909/yii2-model-exception": "*"
     }
 }
